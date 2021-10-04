@@ -3,8 +3,15 @@
 {% block content %}
 
     {% for i in recommends  %}
-        <h1> {{i}} </h1>
+
+        <div class="container">
+            <h1> {{i.movie_name}}  {{ i.movie_id }} </h1>
+            <img  src= {{i.movie_poster}}>
+            <li><a href="{% url 'recommend:movie_details' i.movie_id %}">know more about this movie</a></li>
+            <br>
+        </div>
 
     {% endfor %}
+
 
 {% endblock content %}
