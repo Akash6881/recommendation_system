@@ -22,10 +22,13 @@ def recommend(request):
     distances = similarity[movies_index]
 
     movies_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:10]
-    s = ""
+    s = []
     for i in movies_list:
-        s = s + data.iloc[i[0]].title + " "
+        s.append(data.iloc[i[0]].title)
+
+    stuff_for_backend = {
+        'recommends' : s
+    }
 
 
-
-    return HttpResponse(s)
+    return render(request, 'recommend/recommend.html')
