@@ -1,10 +1,10 @@
-{% extends 'index.html' %}
+{% extends 'recommend/index.html' %}
 
 {% block content %}
 
-{% for i in recommends  %}
-    <h1>i</h1>
+    {% for i in recommends  %}
+        <h1> {{i}} </h1>
 
-{% endfor %}
+    {% endfor %}
 
 {% endblock content %}

@@ -26,9 +26,10 @@ def recommend(request):
     for i in movies_list:
         s.append(data.iloc[i[0]].title)
 
-    stuff_for_backend = {
+
+    stuff_for_frontend = {
         'recommends' : s
     }
 
 
-    return render(request, 'recommend/recommend.html')
+    return render(request, 'recommend/recommend.html', stuff_for_frontend)
