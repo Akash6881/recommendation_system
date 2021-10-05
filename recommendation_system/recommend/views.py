@@ -4,6 +4,7 @@ from django.http import HttpResponse
 import pickle
 import bs4 as bs
 import requests
+from nltk.stem import PorterStemmer
 
 
 from .models import Search
@@ -12,7 +13,7 @@ from .models import Search
 # Create your views here.
 nlp_model = pickle.load(open('./ml_data/nlp_model.pkl', 'rb'))
 similarity = pickle.load(open('./ml_data/similarity.pkl', 'rb'))
-
+tfid = pickle.load(open('./ml_data/tfid_vectorizer.pkl', 'rb'))
 data = pd.read_csv('./ml_data/movie_data_with_tags.csv')
 
 def fetch(movie_id):
@@ -61,7 +62,15 @@ def recommend(request):
 
     return render(request, 'recommend/recommend.html', stuff_for_frontend)
 
-def movie_details(reuqust, movie_id):
+
+def tranfromation(s):
+    ps = PorterStemmer()
+    s = s.lower()
+    rev = s.split()
+    rev = [ps.stem(word) for word in rev]
+    return ' '.join(rev)
+
+def movie_details(reqeuest, movie_id):
     movie_details = fetch(movie_id)
     imdb_id = movie_details['imdb_id']
 
@@ -73,10 +82,30 @@ def movie_details(reuqust, movie_id):
 
     soup_result = soup.find_all("div",{"class":"text show-more__control"})
 
-    reviews_list = [] # list of reviews
-    reviews_status = [] # list of comments (good or bad)
+    all_review = []
 
     for review in soup_result:
-        print(review)
+        if(review.string):
 
-    return HttpResponse(movie_id)
+            tranformed_review = tranfromation(review.string)
+
+            vector = tfid.transform([tranformed_review]).toarray()
+
+            pred = nlp_model.predict(vector)
+
+            print(review.string)
+            print(pred)
+
+            dict = {
+                'movie_id' : movie_id,
+                'review' : review.string,
+                'review_pred' : pred,
+            }
+            all_review.append(dict)
+
+    stuff_for_frontend = {
+        'reviews' : all_review,
+    }
+
+
+    return render(reqeuest, 'recommend/details.html', stuff_for_frontend)

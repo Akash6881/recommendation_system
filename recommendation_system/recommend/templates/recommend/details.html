@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>movie review analysis</title>
+</head>
+<body>
+    {% for i in reviews %}
+        <p>{{ i.movie_id}} <br> {{ i.review }} <br> {{ i.review_pred }}</p>
+
+    {% endfor %}
+</body>
+</html>
