@@ -2,14 +2,15 @@ import pandas as pd
 from django.shortcuts import render
 from django.http import HttpResponse
 import pickle
-
+import bs4 as bs
 import requests
+
 
 from .models import Search
 
 
 # Create your views here.
-
+nlp_model = pickle.load(open('./ml_data/nlp_model.pkl', 'rb'))
 similarity = pickle.load(open('./ml_data/similarity.pkl', 'rb'))
 
 data = pd.read_csv('./ml_data/movie_data_with_tags.csv')
@@ -61,4 +62,21 @@ def recommend(request):
     return render(request, 'recommend/recommend.html', stuff_for_frontend)
 
 def movie_details(reuqust, movie_id):
+    movie_details = fetch(movie_id)
+    imdb_id = movie_details['imdb_id']
+
+    URL = 'https://www.imdb.com/title/{}/reviews?ref_=tt_urv'.format(imdb_id)
+
+    response = requests.get(URL)
+
+    soup = bs.BeautifulSoup(response.text, 'html.parser')
+
+    soup_result = soup.find_all("div",{"class":"text show-more__control"})
+
+    reviews_list = [] # list of reviews
+    reviews_status = [] # list of comments (good or bad)
+
+    for review in soup_result:
+        print(review)
+
     return HttpResponse(movie_id)
