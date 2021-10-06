@@ -23,7 +23,7 @@ def fetch(movie_id):
     return data
 
 def index(request):
-    return render(request, 'recommend/index.html')
+    return render(request, 'recommend/index2.html')
 
 
 def recommend(request):
@@ -93,8 +93,8 @@ def movie_details(reqeuest, movie_id):
 
             pred = nlp_model.predict(vector)
 
-            print(review.string)
-            print(pred)
+            #print(review.string)
+            #print(pred)
 
             dict = {
                 'movie_id' : movie_id,

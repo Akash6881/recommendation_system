@@ -1,0 +1,97 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 18px;
+  font-family: Play, sans-serif;
+  line-height: 1.2;
+  background: #1f1f1f;
+  color: #aaa;
+}
+
+a {
+  text-decoration: none;
+  color: #2bb7a4;
+  font-weight: bold;
+  transition: 0.3s;
+}
+a:hover {
+  color: white;
+}
+
+h1 {
+  margin: 0.2em 0;
+  color: white;
+}
+
+p {
+  margin: 0.8em 0;
+}
+
+.wrap {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+form label {
+  display: block;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0.3em;
+}
+form input {
+  outline: none;
+  width: 100%;
+  font-size: 1.3rem;
+  padding: 0.5em 1em;
+  border: 5px solid white;
+  border-radius: 0.3em;
+}
+form input:focus {
+  border-color: #2bb7a4;
+}
+
+.results {
+  margin: 1rem auto;
+}
+
+.result {
+  padding: 0.8rem;
+  margin-bottom: 0.8rem;
+  border: 5px solid #aaa;
+  border-radius: 0.3em;
+}
+.result .imdb {
+  float: right;
+  position: relative;
+  top: 5px;
+}
+.result h2 {
+  float: left;
+  color: white;
+}
+.result h2 a {
+  color: #aaa;
+}
+.result h2 a:hover {
+  color: white;
+}
+.result .title {
+  margin-bottom: 0.5em;
+}
+.result .meta {
+  display: block;
+}
+.result .meta strong {
+  color: white;
+}
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
