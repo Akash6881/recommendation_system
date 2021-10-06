@@ -60,7 +60,7 @@ def recommend(request):
     }
 
 
-    return render(request, 'recommend/recommend.html', stuff_for_frontend)
+    return render(request, 'recommend/recommend2.html', stuff_for_frontend)
 
 
 def tranfromation(s):

@@ -5,6 +5,10 @@
     {% load static %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'styles2.css' %}">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script src='https://cdn.rawgit.com/gijsroge/tilt.js/38991dd7/dest/tilt.jquery.js'></script>
+    <script  src="{% static 'script.js' %}"></script>
     <title>Home page</title>
 </head>
 <body>
@@ -13,7 +17,6 @@
     <link href='https://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
     <div class="wrap">
       <h1>TV/Movies Search</h1>
-      <p>Uses <a href="http://www.omdbapi.com/">the omdb api</a>, not affiliated with IMDB.</p>
       <form class="movie-form" action = '/recommend' method="get">
         <label for="search">Enter a Movie or TV show</label>
         <input type="text" id="search" placeholder="Then press enter.." name = "movie_name"/>
@@ -24,6 +27,8 @@
     {% block content %}
 
     {% endblock content %}
-
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script src='https://cdn.rawgit.com/gijsroge/tilt.js/38991dd7/dest/tilt.jquery.js'></script>
+    <script  src="{% static 'script.js' %}"></script>
 </body>
 </html>
