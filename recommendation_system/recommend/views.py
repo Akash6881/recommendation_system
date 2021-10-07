@@ -108,4 +108,4 @@ def movie_details(reqeuest, movie_id):
     }
 
 
-    return render(reqeuest, 'recommend/details.html', stuff_for_frontend)
+    return render(reqeuest, 'recommend/details2.html', stuff_for_frontend)

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details Page</title>
+    {% load static %}
+    <link rel="stylesheet" href = "{% static 'styles_details.css' %}">
+</head>
+<body>
+    <div class="table-title">
+    <h3>Data Table</h3>
+    </div>
+    <table class="table-fill">
+    <thead>
+    <tr>
+    <th class="text-left">Month</th>
+    <th class="text-left">Sales</th>
+    </tr>
+    </thead>
+    <tbody class="table-hover">
+
+    {% for i in reviews %}
+        <tr>
+            <td class="text-left"> {{ i.review }} </td>
+            <td class="text-left">{{ i.review_pred }}</td>
+        </tr>
+    {% endfor %}
+
+
+    </tbody>
+    </table>
+</body>
+</html>
